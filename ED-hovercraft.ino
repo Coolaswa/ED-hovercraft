@@ -36,7 +36,7 @@ void setup() {
   optillen.attach(3, 750, 2250);
   optillen.write(klap);
 
-  grijp = 0;
+  grijp = 90;
   grijpen.attach(4, 800, 2200);
   grijpen.write(grijp);
   
@@ -70,10 +70,14 @@ void loop() {
       case 'd':
         steer -= 5;
         steering.write(steer);
+        Serial.print("Steer: ");
+        Serial.println(steer,DEC);
       break;
       case 'a':
         steer += 5;
         steering.write(steer);
+        Serial.print("Steer: ");
+        Serial.println(steer,DEC);
       break;
       case 'q':
         lift += 5;
@@ -98,10 +102,14 @@ void loop() {
       case '6':
         grijp += 5;
         grijpen.write(grijp);
+        Serial.print("Grijp: ");
+        Serial.println(grijp, DEC);
       break;
       case '4':
         grijp -= 5;
         grijpen.write(grijp);
+        Serial.print("Grijp: ");
+        Serial.println(grijp, DEC);
       break;
       case 'n':
         thrust = 0;
