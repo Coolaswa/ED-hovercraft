@@ -3,11 +3,15 @@
 int thrust;
 int steer;
 int lift;
+int klap;
+int grijp;
 Servo liftMotor;
 Servo thrustMotor;
 Servo gimbleB;
 Servo gimbleU;
 Servo steering;
+Servo optillen;
+Servo grijpen;
 
 int gimbleUPosX = 90;
 int gimbleUPosY = 90;
@@ -27,6 +31,14 @@ void setup() {
   lift = 0;
   liftMotor.attach(2, 1000, 2000);
   liftMotor.write(lift);
+
+  klap = 90;
+  optillen.attach(3, 750, 2250);
+  optillen.write(klap);
+
+  grijp = 0;
+  grijpen.attach(4, 800, 2200);
+  grijpen.write(grijp);
   
   //servoX.attach(servoPinX, 1000, 2000);
   //servoY.attach(servoPinY, 750, 2250);
@@ -46,11 +58,13 @@ void loop() {
       case 'w': 
         thrust += 5;
         thrustMotor.write(thrust);
+        Serial.print("Thrust: ");
         Serial.println(thrust,DEC);
       break;
       case 's':
         thrust -= 5;
         thrustMotor.write(thrust);
+        Serial.print("Thrust: ");
         Serial.println(thrust,DEC);
       break;
       case 'd':
@@ -64,10 +78,36 @@ void loop() {
       case 'q':
         lift += 5;
         liftMotor.write(lift);
+        Serial.print("Lift: ");
+        Serial.println(lift, DEC);
       break;
       case 'z':
         lift -= 5;
         liftMotor.write(lift);
+        Serial.print("Lift: ");
+        Serial.println(lift, DEC);
       break;
+      case '8':
+        klap += 5;
+        optillen.write(klap);
+      break;
+      case '2':
+        klap -= 5;
+        optillen.write(klap);
+      break;
+      case '6':
+        grijp += 5;
+        grijpen.write(grijp);
+      break;
+      case '4':
+        grijp -= 5;
+        grijpen.write(grijp);
+      break;
+      case 'n':
+        thrust = 0;
+        lift = 0;
+        liftMotor.write(lift);
+        thrustMotor.write(thrust);
+        Serial.println("Noodstop!");
   }
 }
